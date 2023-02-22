@@ -21,14 +21,15 @@ function OrderList() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
 
-  return data.orders.map(({ id, state }) => (
-      <div key={id}>
-        <p>{id}</p>
-        <p>{state}</p>
-      </div>
-  ));
+    return <table> {data.orders.map(({ id, state }) => (
+                  <tr  key={id}>
+                      <td>{id}</td>
+                      <td>{state}</td>
+                      <td><button>change</button></td>
+                  </tr>
+        ))}
+    </table>
 }
-
 
 
 function App() {
