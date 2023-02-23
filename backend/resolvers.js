@@ -1,6 +1,7 @@
 // const Recipe = require('./src/models/Recipe.js')
 
 import Recipe from "./Recipe.js"
+import Order from "./Order.js";
 export default {
     Query: {
         async recipe(_, {ID}) {
@@ -9,8 +10,27 @@ export default {
         async getRecipes(_, {amount}) {
             return await Recipe.find().sort({createdAt: -1}).limit(amount)
         },
+
+        async getOrders(_, {amount}) {
+            return await Order.find().sort({createdAt: -1}).limit(amount)
+        },
+        async getAllOrders(_) {
+            return await Order.find().sort({createdAt: -1})
+        }
     },
     Mutation: {
+        async createOrder(_,{orderInput: {state, employeeid}}) {
+            const createdOrder = new Order({
+                state: state,
+                employeeid: employeeid,
+            })
+
+            const res = await createdOrder.save();
+            return {
+                id: res.id
+                // ...res._doc
+            }
+        },
         async createRecipe(_, {recipeInput: {name, description}}) {
             const createdRecipe = new Recipe({
                 name: name,

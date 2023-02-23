@@ -4,61 +4,60 @@ import './App.css';
 import {gql, useMutation, useQuery} from "@apollo/client";
 
 const GET_ORDERS = gql`
-    query GetOrders {
-      orders {
-        id
-        state
-        employeeeId
-      }
-    }
-`;
-
-const ADD_TODO = gql`
-  mutation AddTodo($type: String!) {
-    addTodo(type: $type) {
+query GetAllOrders {
+    getOrders {
+      employeeid
       id
-      type
+      state
     }
   }
 `;
 
-// Define mutation
-const INCREMENT_COUNTER = gql`
-  # Increments a back-end counter and gets its resulting value
-  mutation IncrementCounter {
-    currentValue
+// const GET_ORDERS = gql`
+//   {
+//     orders {
+//       employeeid
+//       id
+//       state
+//     }
+//   }
+// `;
+
+
+const CREATE_ORDER = gql`
+  mutation CreateOrder($orderInput: OrderInput) {
+    createOrder(orderInput: $orderInput) {
+      state
+      employeeid
+    }
   }
 `;
 
-
-type Order = {
-  id: number,
-  state: string,
-  empoyeeid: string
-}
 
 
 function OrderList() {
 
   // const [mutateFunction, { data: data2 , loading: loading2 , error: error2 }] = useMutation(ADD_TODO);
-  const [addTodo, { data: data3, loading: loading3, error: error3 }] = useMutation(ADD_TODO);
+  // const [addTodo, { data: data3, loading: loading3, error: error3 }] = useMutation(ADD_TODO);
 
+  const { loading, error, data } = useQuery(GET_ORDERS);
+  const [createOrder, order] = useMutation(CREATE_ORDER);
 
   let butClick = (b) => {
-    addTodo({ variables: { type: b.value } });
+    // addTodo({ variables: { type: b.value } });
     // alert(JSON.stringify(b))
   }
 
-  const { loading, error, data } = useQuery(GET_ORDERS);
-
-
-  if (error3) return <p>Error mutating : {error3.message}</p>;
-
+  const createClick = () => {
+    createOrder({
+      variables: { orderInput: {} },
+    });
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
 
-    return <table> {data.orders.map(({ id, state }) => (
+  return <div><button onClick={()=> createClick()}>change</button><table> {data.getOrders.map(({ id, state }) => (
               <tr key={id}>
                   <td>{id}</td>
                   <td>{state}</td>
@@ -66,6 +65,7 @@ function OrderList() {
               </tr>
         ))}
     </table>
+  </div>
 }
 
 
