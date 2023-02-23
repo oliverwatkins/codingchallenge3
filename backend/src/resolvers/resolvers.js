@@ -1,7 +1,7 @@
 // const Recipe = require('./src/models/Recipe.js')
 
-import Recipe from "./Recipe.js"
-import Order from "./Order.js";
+import Recipe from "../schema/Recipe.js"
+import Order from "../schema/Order.js";
 export default {
     Query: {
         async recipe(_, {ID}) {

@@ -8,12 +8,6 @@ table td{
   padding: 20px
 }
 
-/*tr:nth-child(odd) {*/
-/*  background-color: blue;*/
-/*}*/
-/*tr:nth-child(even) {*/
-/*  background-color: red;*/
-/*}*/
 tr:nth-child(odd) {
   background-color: #c55f5f;
 }

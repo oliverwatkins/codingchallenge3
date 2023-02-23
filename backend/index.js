@@ -1,14 +1,12 @@
 import {ApolloServer} from 'apollo-server';
 
-import typeDefs from './typeDefs.js'
-import resolvers from './resolvers.js'
+import typeDefs from './src/types/typeDefs.js'
+import resolvers from './src/resolvers/resolvers.js'
 
 import mongoose from 'mongoose'
 
 const MONGO_DB = "mongodb+srv://owatkins3:trillion1@cluster0.7xdqmaq.mongodb.net/?retryWrites=true&w=majority"
 
-// The ApolloServer constructor requires two parameters: your schema
-// definition and your set of resolvers.
 const server = new ApolloServer({
     typeDefs,
     resolvers,

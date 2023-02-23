@@ -57,7 +57,7 @@ function OrderList() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
 
-  return <div><button onClick={()=> createClick()}>change</button><table> {data.getOrders.map(({ id, state }) => (
+  return <div><button onClick={()=> createClick()}>create</button><table> {data.getOrders.map(({ id, state }) => (
               <tr key={id}>
                   <td>{id}</td>
                   <td>{state}</td>
