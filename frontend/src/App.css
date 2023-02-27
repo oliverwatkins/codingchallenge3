@@ -1,4 +1,11 @@
 .App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-family: "Arial Black";
 }
 
 table {
@@ -8,17 +15,16 @@ table td{
   padding: 20px
 }
 
-tr:nth-child(odd) {
-  background-color: #c55f5f;
+.status-OPEN {
+  background-color: #b5eca2;
+}
+.status-IN_PROGRESS {
+  background-color: #e2bcef;
+}
+.status-COMPLETE {
+  background-color: #f5ddbb;
 }
 
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-}
+
 
 
