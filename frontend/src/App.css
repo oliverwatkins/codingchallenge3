@@ -4,19 +4,34 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  font-family: "Arial Black";
+  font-size: 15px;
+  font-family: "Arial";
 }
+
+table td{
+  padding: 2px;
+  border-bottom: 2px solid black;
+}
+
+/*table th{*/
+/*  background-color: #f5e2e2;*/
+/*  border-bottom: 5px solid black;*/
+/*}*/
 
 table {
-  padding: 20px
+  padding: 2px
 }
 table td{
-  padding: 20px
+  padding: 2px
 }
-
+table th{
+  padding: 0px 15px 0px 15px;
+  background-color: #f5e2e2;
+  border-bottom: 5px solid rgba(0, 0, 0, 0.31);
+}
 .status-OPEN {
   background-color: #b5eca2;
+
 }
 .status-IN_PROGRESS {
   background-color: #e2bcef;

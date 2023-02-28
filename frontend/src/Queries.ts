@@ -3,10 +3,11 @@ import {gql} from "@apollo/client";
 export const GET_ORDERS = gql`
     {
         orders {
-            employeeNo
-            description
+            customer
             id
             state
+            items {description, amount}, 
+            statusChanges {status, updatedDate}
         }
     }
 `;
