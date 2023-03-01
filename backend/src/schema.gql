@@ -1,0 +1,82 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Item {
+  id: Int!
+  description: String!
+  amount: Float!
+  order: Order!
+}
+
+type StatusChange {
+  id: Int!
+  status: String!
+  updatedDate: String!
+  order: Order!
+  employee: Employee!
+}
+
+type Order {
+  id: Int!
+  state: String!
+  customer: String!
+  description: String!
+  employee: Employee!
+  createdDate: String!
+  updatedDate: String!
+  items: [Item!]
+  statusChanges: [StatusChange!]
+}
+
+type Employee {
+  id: Int!
+  name: String!
+  orders: [Order!]
+  statusChanges: [StatusChange!]
+  ordersByEmployee: [Order!]!
+}
+
+type Owner {
+  id: Int!
+  name: String!
+  pets: [Pet!]
+}
+
+type Pet {
+  id: Int!
+  name: String!
+  type: String
+  ownerId: Int!
+  owner: Owner!
+}
+
+type Query {
+  getOrder(id: Int!): Order!
+  orders: [Order!]!
+  employees: [Employee!]!
+  employee(id: Int!): Employee!
+}
+
+type Mutation {
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
+  createEmployee(createEmployeesInput: CreateEmployeeInput!): Employee!
+}
+
+input CreateOrderInput {
+  state: String!
+  description: String!
+  employeeNo: Int!
+}
+
+input UpdateOrderInput {
+  state: String
+  description: String
+  employeeNo: Int
+  id: Int!
+}
+
+input CreateEmployeeInput {
+  name: String!
+}
