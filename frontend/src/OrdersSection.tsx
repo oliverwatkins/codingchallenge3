@@ -10,7 +10,7 @@ type Props = {
 
 export function OrderSection(props: Props) {
     const { loading, error, data, refetch } = useQuery(GET_ORDERS);
-    const [updateOrder, { loading : loading2, error : error2 }] = useMutation(UPDATE_ORDER);
+    const [updateOrder, { loading : loadingUpdate, error : errorUpdate }] = useMutation(UPDATE_ORDER);
 
     console.info("DATA FROM GET ORDERS")
     console.info("" + JSON.stringify(data))
@@ -29,12 +29,17 @@ export function OrderSection(props: Props) {
         refetch()
     }
 
-    if (loading || loading2) return <p>Loading...</p>;
-    if (error || error2) return <p>Error : {error ? error.message : error2.message}</p>;
+    if (loading || loadingUpdate) return <p>Loading...</p>;
+    if (error || errorUpdate) return <p>Error : {error ? error.message : errorUpdate.message}</p>;
+
 
     return <table>
-        <tr><th>id</th><th>current state</th><th>customer</th><th>employee</th><th>action</th></tr>
+        <tr><th>id</th><th>current state</th><th>customer</th><th>employee</th><th>action</th><th>created date</th><th>updated date</th></tr>
             {data.orders.map((order: OrderType) => {
+
+                var dateCreated = new Date(Number(order.createdDate));
+                var dateUpdated = new Date(Number(order.updatedDate));
+
                 return (
                     <>
                         <tr key={order.id}>
@@ -49,6 +54,8 @@ export function OrderSection(props: Props) {
                         <td>{itemsSection(order.items)}</td>
                         <td></td>
                         <td>{statusChangesSection(order.statusChanges)}</td>
+                        <td>{dateCreated.toISOString()}</td>
+                        <td>{dateUpdated.toISOString()}</td>
                     </>
                 )
             })}
@@ -78,7 +85,7 @@ function statusChangesSection(statusChanges: StatusChange[]) {
     let s = statusChanges.map((elem)=> {
 
         var date = new Date(Number(elem.updatedDate));
-        console.log(date.toUTCString())
+        // console.log(date.toUTCString())
 
         return <tr><td>
             {elem.status}

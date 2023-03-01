@@ -2,6 +2,8 @@
 export type OrderType = {
     employeeNo: number
     customer: string
+    createdDate: string
+    updatedDate: string
     id: number
     state: string
     description: string
