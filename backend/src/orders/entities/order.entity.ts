@@ -30,11 +30,12 @@ export class Order {
 
     @Column()
     @Field()
-    createdDate: string;
+    createdDate: string; // TODO dates should be long or date object, but having problems with Graphql and dates at the moment, so using string for now
+
 
     @Column()
     @Field()
-    updatedDate: string;
+    updatedDate: string; // TODO dates should be long or date object, but having problems with Graphql and dates at the moment, so using string for now
 
     @OneToMany(() => Item, item => item.order)
     @Field(type => [Item],  {nullable: true})

@@ -17,7 +17,7 @@ export class StatusChange {
 
     @Column()
     @Field()
-    updatedDate: string;
+    updatedDate: string; // TODO dates should be long or date object, but having problems with Graphql and dates at the moment, so using string for now
 
     @ManyToOne(() => Order, order => order.statusChanges)
     @Field(type => Order)
